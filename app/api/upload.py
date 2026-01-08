@@ -1,4 +1,4 @@
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, UploadFile, Depends
 from fastapi.responses import FileResponse
 from app.services.upload_service import save_image
 import os
@@ -8,7 +8,7 @@ router = APIRouter()
 
 
 @router.post("/upload")
-async def upload_image(file: UploadFile = File(...)):
+async def upload_image(file: UploadFile = File(...),):
     """
     Upload an image (JPEG/PNG, max 5MB)
     """
