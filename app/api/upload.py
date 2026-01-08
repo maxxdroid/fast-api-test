@@ -1,10 +1,11 @@
 from fastapi import APIRouter, File, UploadFile, Depends
 from fastapi.responses import FileResponse
+from app.api.deps import get_api_key
 from app.services.upload_service import save_image
 import os
 from app.services.upload_service import get_image_path
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_api_key)] )
 
 
 @router.post("/upload")

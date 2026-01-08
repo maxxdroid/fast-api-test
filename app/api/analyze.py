@@ -1,10 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
+from app.api.deps import get_api_key
 from app.services.analyze_service import analyze_image
 from app.services.upload_service import get_image_path
 
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_api_key)] )
 
 class AnalyzeRequest(BaseModel):
     image_id: str
